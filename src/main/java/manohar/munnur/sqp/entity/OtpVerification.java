@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class OtpVerification {
 
     @Id
+    @Column(length = 191)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

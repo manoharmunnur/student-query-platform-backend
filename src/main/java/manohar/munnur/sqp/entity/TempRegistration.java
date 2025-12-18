@@ -14,6 +14,7 @@ import java.util.UUID;
 public class TempRegistration {
 
     @Id
+    @Column(length = 191)
     private String id; // UUID string
 
     // "STUDENT" or "FACULTY"
