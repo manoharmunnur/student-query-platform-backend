@@ -20,6 +20,6 @@ public interface OtpRepository extends JpaRepository<OtpVerification, Long> {
     Optional<OtpVerification> findByResetToken(String resetToken);
 
     // Custom query (optional)
-    @Query("SELECT o FROM OtpVerification o WHERE o.userId = :userId")
+    @Query("SELECT o FROM otp_verification o WHERE o.userId = :userId")
     Optional<OtpVerification> findOtp(@Param("userId") String userId);
 }
