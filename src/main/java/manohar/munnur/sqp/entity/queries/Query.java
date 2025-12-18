@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,10 +49,21 @@ public class Query {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] attachment;
 
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
+//    @Column(nullable = false, updatable = false)
+//    private LocalDateTime createdAt = LocalDateTime.now();
+//
+//    private LocalDateTime updatedAt;
+//    private LocalDateTime resolvedAt;
+    
+    @CreatedDate
+    @Column(nullable = false, updatable = false, columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt;
+    
+    @LastModifiedDate
+    @Column(columnDefinition = "datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
+    
+    @Column(columnDefinition = "datetime NULL")
     private LocalDateTime resolvedAt;
 
     @Column(columnDefinition = "TEXT")
