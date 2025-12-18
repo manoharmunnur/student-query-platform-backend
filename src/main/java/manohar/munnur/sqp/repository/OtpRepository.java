@@ -13,7 +13,7 @@ public interface OtpRepository extends JpaRepository<OtpVerification, Long> {
     // Fetch OTP using userId (email or phone)
     Optional<OtpVerification> findByUserId(String userId);
 
-    // 🔥 Fetch latest OTP for a given user
+    // Fetch latest OTP for a given user
     Optional<OtpVerification> findTopByUserIdOrderByCreatedAtDesc(String userId);
 
     // For forgot password reset-token
