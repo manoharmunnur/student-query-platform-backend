@@ -27,7 +27,7 @@ public class AnswerVote {
     private Answer answer;
 
     // which faculty voted
-    @Column(name = "faculty_id", nullable = false)
+    @Column(name = "faculty_id", nullable = false, length = 191)
     private String facultyId;
 
     // +1 (upvote), -1 (downvote) if you want both
