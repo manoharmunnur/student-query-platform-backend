@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import manohar.munnur.sqp.repository.FacultyRepository;
 import manohar.munnur.sqp.repository.OtpRepository;
 import manohar.munnur.sqp.repository.StudentRepository;
 import manohar.munnur.sqp.service.OtpService;
+import manohar.munnur.sqp.util.OtpUtil;
 
 @RestController
 @RequestMapping("/forgot-password")
@@ -46,8 +48,8 @@ public class ForgotPasswordController {
         }
 
         // Generate OTP
-        String otp = otpService.generateOtp();
-        otpService.sendOtpEmail(email, otp);
+        String otp = OtpUtil.generateOtp();
+        otpService.sendOtp(email, otp);
 
         // Save to DB
         OtpVerification otpData = new OtpVerification();
@@ -95,7 +97,7 @@ public class ForgotPasswordController {
     // ---------------------------
     // STEP 3: Reset Password
     // ---------------------------
-    @PostMapping("/reset-password")
+    @PatchMapping("/reset-password")
     public ResponseEntity<?> resetPassword(
             @RequestParam String resetToken,
             @RequestParam String newPassword) {
